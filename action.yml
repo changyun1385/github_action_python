@@ -10,18 +10,18 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    name: Install python
-    uses: actions/set-up-python@v4
-    with:
-      python-version: '3.10'
-     name: Install dependencies
-     run: pip install -r requirements.txt
-     shell: bash
-     name: Pass Inputs to Shell
-     run:
-      echo "INPUT_NUM=${{ inputs.num }}" >> $GITHUB_ENV
+    - name: Install python
+      uses: actions/set-up-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
       shell: bash
-      name: Fetch the number's square
+    - name: Pass Inputs to Shell
+      run:
+        echo "INPUT_NUM=${{ inputs.num }}" >> $GITHUB_ENV
+      shell: bash
+    - name: Fetch the number's square
       id: get-square
       run: python src/get_num_square.py
       shell: bash
